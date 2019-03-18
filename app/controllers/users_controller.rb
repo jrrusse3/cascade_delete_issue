@@ -61,6 +61,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def import
+    if params[:file].nil?
+      redirect_to users_path, notice: "File Not Found!"
+    else
+      User.import(params[:file])
+      redirect_to users_path, notice: "File Uploaded Successfully. Users with duplicate emails will be skipped."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
