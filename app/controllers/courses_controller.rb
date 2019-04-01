@@ -61,6 +61,15 @@ class CoursesController < ApplicationController
     end
   end
 
+  def import
+    if params[:file].nil?
+      redirect_to courses_path, notice: "File Not Found!"
+    else
+      Course.import(params[:file])
+      redirect_to courses_path, notice: "File Uploaded Successfully. Courses with duplicate Course Numbers will be skipped."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_course

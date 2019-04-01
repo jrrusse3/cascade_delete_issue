@@ -27,3 +27,11 @@
 <br>
 
 <%= link_to 'New Course', new_course_path %>
+
+<h2>Bulk Upload Users</h2>
+<%= form_tag import_courses_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import Courses" %>
+<% end %>
+<h3><a href="courses_template.csv" download>Download Template</a></h3>
+<h3><a href="course_test_data.csv" download>Download Example Data</a></h3>
