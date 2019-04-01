@@ -1,0 +1,37 @@
+<%= form_with(model: abet, local: true) do |form| %>
+  <% if abet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(abet.errors.count, "error") %> prohibited this abet from being saved:</h2>
+
+      <ul>
+      <% abet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :poor %>
+    <%= form.number_field :poor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :acceptable %>
+    <%= form.number_field :acceptable %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exceeds %>
+    <%= form.number_field :exceeds %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

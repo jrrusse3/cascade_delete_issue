@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :abets
   resources :courses
   resources :users do
     collection { post :import }

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @abet.description %>
+</p>
+
+<p>
+  <strong>Poor:</strong>
+  <%= @abet.poor %>
+</p>
+
+<p>
+  <strong>Acceptable:</strong>
+  <%= @abet.acceptable %>
+</p>
+
+<p>
+  <strong>Exceeds:</strong>
+  <%= @abet.exceeds %>
+</p>
+
+<%= link_to 'Edit', edit_abet_path(@abet) %> |
+<%= link_to 'Back', abets_path %>
