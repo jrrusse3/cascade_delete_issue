@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<br>
 <p>
   <strong>Course Number:</strong>
   <%= @course.course_number %>
@@ -9,6 +10,70 @@
   <strong>Description:</strong>
   <%= @course.description %>
 </p>
+<br>
+<h3>Faculty</h3>
+<% if @course.users.count > 0 %>
+<table>
+  <thead>
+  <tr>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Title</th>
+    <th>Email</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
 
+  <tbody>
+  <% @course.users.each do |user| %>
+    <tr>
+      <td><%= user.lname %></td>
+      <td><%= user.fname %></td>
+      <td><%= user.title %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to 'Show', user %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% else %>
+<h4>No Assigned Faculty</h4>
+<% end %>
+
+<h3>ABET Criteria</h3>
+
+<% if @course.abets.count > 0 %>
+
+<table>
+<thead>
+<tr>
+  <th>ABET Description</th>
+  <th>Poor</th>
+  <th>Acceptable</th>
+  <th>Exceeds Expectations</th>
+  <th colspan="3"></th>
+</tr>
+</thead>
+
+<tbody>
+<% @course.abets.each do |abet| %>
+  <tr>
+    <td><%= abet.description %></td>
+    <td align="center"><%= abet.poor %></td>
+    <td align="center"><%= abet.acceptable %></td>
+    <td align="center"><%= abet.exceeds %></td>
+    <td><%= link_to 'Show', abet %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<% else %>
+  <h4>No Assigned ABET Criteria</h4>
+<% end %>
+
+
+
+
+<br>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

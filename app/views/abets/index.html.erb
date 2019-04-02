@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Abets</h1>
+<h1>ABET Criteria</h1>
 
 <table>
   <thead>
@@ -17,9 +17,9 @@
     <% @abets.each do |abet| %>
       <tr>
         <td><%= abet.description %></td>
-        <td><%= abet.poor %></td>
-        <td><%= abet.acceptable %></td>
-        <td><%= abet.exceeds %></td>
+        <td align="center"><%= abet.poor %></td>
+        <td align="center"><%= abet.acceptable %></td>
+        <td align="center"><%= abet.exceeds %></td>
         <td><%= link_to 'Show', abet %></td>
         <td><%= link_to 'Edit', edit_abet_path(abet) %></td>
         <td><%= link_to 'Destroy', abet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
