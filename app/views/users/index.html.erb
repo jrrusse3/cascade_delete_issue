@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Users</h1>
-
+<% if @users.count > 0 %>
 <table>
   <thead>
     <tr>
@@ -33,6 +33,9 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <h4>No Users Exist</h4>
+<% end %>
 
 <br>
 
@@ -45,3 +48,4 @@
 <% end %>
 <h3><a href="faculty_template.csv" download>Download Template</a></h3>
 <h3><a href="test_data.csv" download>Download Example Data</a></h3>
+<h5>Tip: Assign Faculty by editing Courses!</h5>

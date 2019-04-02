@@ -22,11 +22,14 @@
   </div>
 
   <h2>Faculty</h2>
-
-  <%= form.collection_select(:user_ids, User.all, :id, :full_name) %>
+  <% if User.all.count > 0 %>
+  <%= form.collection_select(:user_ids, User.all, :id, :full_name, {:multiple => true}) %>
+  <% else %>
+    <h4>No Faculty Exists</h4>
+  <% end %>
 
   <h2>ABET Criteria</h2>
-
+  <% if Abet.all.count > 0 %>
   <%= form.collection_check_boxes(:abet_ids, Abet.all, :id, :description) do |box| %>
     <div class="row">
       <%= box.label(class: "check_box") do %>
@@ -36,6 +39,9 @@
         </div>
       <% end %>
     </div>
+  <% end %>
+  <% else %>
+  <h4>No ABET Criteria Exists</h4>
   <% end %>
   <br>
   <div class="actions">
