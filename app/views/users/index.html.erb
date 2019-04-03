@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<h1>Faculty</h1>
 <% if @users.count > 0 %>
-<table>
+<table frame='box'>
   <thead>
     <tr>
       <th>Last Name</th>
@@ -17,7 +17,7 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.order(:lname).each do |user| %>
       <tr>
         <td><%= user.lname %></td>
         <td><%= user.fname %></td>
@@ -34,18 +34,18 @@
   </tbody>
 </table>
 <% else %>
-  <h4>No Users Exist</h4>
+  <h4>No Faculty Exist</h4>
 <% end %>
 
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<%= link_to 'New Faculty', new_user_path %>
 
-<h2>Bulk Upload Users</h2>
+<h2>Bulk Upload Faculty</h2>
 <%= form_tag import_users_path, multipart: true do %>
   <%= file_field_tag :file %>
   <%= submit_tag "Import Users" %>
 <% end %>
 <h3><a href="faculty_template.csv" download>Download Template</a></h3>
-<h3><a href="test_data.csv" download>Download Example Data</a></h3>
+<h3><a href="faculty_test_data.csv" download>Download Example Data</a></h3>
 <h5>Tip: Assign Faculty by editing Courses!</h5>

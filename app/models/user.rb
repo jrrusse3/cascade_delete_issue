@@ -1,7 +1,10 @@
 class User < ApplicationRecord
   require 'csv'
   validates_uniqueness_of :email
-  has_and_belongs_to_many :courses
+
+  has_many :courses_users
+  has_many :courses, through: :courses_users
+
 
   def full_name
     "#{fname} #{lname}"

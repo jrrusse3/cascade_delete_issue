@@ -28,7 +28,7 @@ class AbetsController < ApplicationController
 
     respond_to do |format|
       if @abet.save
-        format.html { redirect_to @abet, notice: 'Abet was successfully created.' }
+        format.html { redirect_to @abet, notice: 'ABET Criteria was successfully created.' }
         format.json { render :show, status: :created, location: @abet }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AbetsController < ApplicationController
   def update
     respond_to do |format|
       if @abet.update(abet_params)
-        format.html { redirect_to @abet, notice: 'Abet was successfully updated.' }
+        format.html { redirect_to @abet, notice: 'ABET Criteria was successfully updated.' }
         format.json { render :show, status: :ok, location: @abet }
       else
         format.html { render :edit }
@@ -56,8 +56,17 @@ class AbetsController < ApplicationController
   def destroy
     @abet.destroy
     respond_to do |format|
-      format.html { redirect_to abets_url, notice: 'Abet was successfully destroyed.' }
+      format.html { redirect_to abets_url, notice: 'ABET Criteria was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def import
+    if params[:file].nil?
+      redirect_to abets_path, notice: "File Not Found!"
+    else
+      Abet.import(params[:file])
+      redirect_to abets_path, notice: "File Uploaded Successfully. ABET Criteria with duplicate Descriptions will be skipped."
     end
   end
 

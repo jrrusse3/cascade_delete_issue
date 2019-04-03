@@ -1,3 +1,20 @@
 class Abet < ApplicationRecord
-  has_and_belongs_to_many :courses
+  require 'csv'
+  validates_uniqueness_of :description
+
+  has_many :abets_courses
+  has_many :courses, through: :abets_courses
+
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      begin
+        Abet.create! row.to_hash
+      rescue ActiveRecord::RecordInvalid => invalid
+        puts invalid.record.errors
+      rescue ActiveModel::UnknownAttributeError => invalid
+        puts invalid.record.errors
+      end
+    end
+  end
+
 end

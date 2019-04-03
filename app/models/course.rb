@@ -1,8 +1,15 @@
 class Course < ApplicationRecord
   require 'csv'
   validates_uniqueness_of :course_number
-  has_and_belongs_to_many :abets
-  has_and_belongs_to_many :users
+
+  has_many :courses_users
+  has_many :users, through: :courses_users
+
+  has_many :abets_courses, :dependent => :delete_all
+  has_many :abets, through: :abets_courses
+  accepts_nested_attributes_for :abets_courses, allow_destroy: true
+  accepts_nested_attributes_for :abets, allow_destroy: true
+
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
       begin

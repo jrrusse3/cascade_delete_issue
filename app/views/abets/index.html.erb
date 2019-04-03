@@ -2,19 +2,19 @@
 
 <h1>ABET Criteria</h1>
 <% if @abets.count > 0 %>
-<table>
+<table frame='box'>
   <thead>
     <tr>
       <th>Description</th>
       <th>Poor</th>
       <th>Acceptable</th>
-      <th>Exceeds</th>
+      <th>Exceeds Expectations</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @abets.each do |abet| %>
+    <% @abets.order(:description).each do |abet| %>
       <tr>
         <td><%= abet.description %></td>
         <td align="center"><%= abet.poor %></td>
@@ -32,4 +32,13 @@
 <% end %>
 <br>
 <%= link_to 'New ABET Criteria', new_abet_path %>
+
+<h2>Bulk Upload ABET Criteria</h2>
+<%= form_tag import_abets_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import ABET Criteria" %>
+<% end %>
+<h3><a href="abet_template.csv" download>Download Template</a></h3>
+<h3><a href="abet_test_data.csv" download>Download Example Data</a></h3>
+
 <h5>Tip: Assign ABET Criteria by editing Courses!</h5>

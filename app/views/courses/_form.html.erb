@@ -23,7 +23,8 @@
 
   <h2>Faculty</h2>
   <% if User.all.count > 0 %>
-  <%= form.collection_select(:user_ids, User.all, :id, :full_name, {:multiple => true}) %>
+  <%= form.collection_select(:user_ids, User.order('fname ASC').all, :id, :full_name, { :include_blank => "No Faculty" }, { :multiple => true }) %>
+    <h5>Tip: Assign multiple Faculty by using CTRL + Click!</h5>
   <% else %>
     <h4>No Faculty Exists</h4>
   <% end %>

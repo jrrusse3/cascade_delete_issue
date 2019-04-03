@@ -18,20 +18,20 @@
 
   <div class="field">
     <%= form.label :poor %>
-    <%= form.number_field :poor %>
+    <%= form.number_field :poor, {min: 0, max: 100} %>
   </div>
 
   <div class="field">
     <%= form.label :acceptable %>
-    <%= form.number_field :acceptable %>
+    <%= form.number_field :acceptable, {min: 0, max: 100} %>
   </div>
 
   <div class="field">
     <%= form.label :exceeds, "Exceeds Expectations" %>
-    <%= form.number_field :exceeds %>
+    <%= form.number_field :exceeds, {min: 0, max: 100} %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Update ABET"%>
   </div>
 <% end %>
