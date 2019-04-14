@@ -1,5 +1,4 @@
-<p id="notice"><%= notice %></p>
-<br>
+
 <p>
   <strong>Last Name:</strong>
   <%= @user.lname %>
@@ -39,7 +38,7 @@
 <h2>Assigned Courses</h2>
 
 <% if @user.courses.count > 0 %>
-<table frame='box'>
+<table class="table">
   <thead>
   <tr>
     <th>Course Number</th>

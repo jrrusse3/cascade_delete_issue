@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
 
-<br>
 <p>
   <strong>Course Number:</strong>
   <%= @course.course_number %>
@@ -10,10 +8,9 @@
   <strong>Description:</strong>
   <%= @course.description %>
 </p>
-<br>
 <h3>Faculty</h3>
 <% if @course.users.count > 0 %>
-<table frame='box'>
+<table class="table">
   <thead>
   <tr>
     <th>First Name</th>
@@ -44,7 +41,7 @@
 
 <% if @course.abets.count > 0 %>
 
-<table frame='box'>
+<table class="table">
 <thead>
 <tr>
   <th>ABET Description</th>
@@ -60,14 +57,14 @@
 <% @course.abets.each do |abet| %>
   <tr>
     <td><%= abet.description %></td>
-    <td align="center"><%= abet.poor %></td>
-    <td align="center"><%= abet.acceptable %></td>
-    <td align="center"><%= abet.exceeds %></td>
+    <td align="center"><%= abet.poor %>%</td>
+    <td align="center"><%= abet.acceptable %>%</td>
+    <td align="center"><%= abet.exceeds %>%</td>
     <td>
     <%= form_for @course, url: {action: "update" } do |f| %>
       <%= f.fields_for :abets_courses do |ff| %>
         <% if ff.object.abet_id == abet.id %>
-        <%= ff.number_field :grade, {min: 0, max: 100}%>
+        <%= ff.number_field :grade, {min: 0, max: 100}%>%
         <%= ff.submit "Update Grade" %>
             <% end %>
       <% end %>

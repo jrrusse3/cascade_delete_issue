@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <h1>ABET Criteria</h1>
 <% if @abets.count > 0 %>
-<table frame='box'>
+<table class="table">
   <thead>
     <tr>
       <th>Description</th>
@@ -17,9 +16,9 @@
     <% @abets.order(:description).each do |abet| %>
       <tr>
         <td><%= abet.description %></td>
-        <td align="center"><%= abet.poor %></td>
-        <td align="center"><%= abet.acceptable %></td>
-        <td align="center"><%= abet.exceeds %></td>
+        <td align="center"><%= abet.poor %>%</td>
+        <td align="center"><%= abet.acceptable %>%</td>
+        <td align="center"><%= abet.exceeds %>%</td>
         <td><%= link_to 'Show', abet %></td>
         <td><%= link_to 'Edit', edit_abet_path(abet) %></td>
         <td><%= link_to 'Destroy', abet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,15 +29,16 @@
 <% else %>
   <h4>No ABET Criteria Exist</h4>
 <% end %>
-<br>
-<%= link_to 'New ABET Criteria', new_abet_path %>
 
+<%= link_to 'New ABET Criteria', new_abet_path %>
+<hr>
 <h2>Bulk Upload ABET Criteria</h2>
 <%= form_tag import_abets_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import ABET Criteria" %>
+  <p><%= file_field_tag :file %></p>
+  <p><%= submit_tag "Import ABET Criteria" %></p>
 <% end %>
-<h3><a href="abet_template.csv" download>Download Template</a></h3>
-<h3><a href="abet_test_data.csv" download>Download Example Data</a></h3>
+<hr>
+<h4><a href="abet_template.csv" download>Download Template</a></h4>
+<h4><a href="abet_test_data.csv" download>Download Example Data</a></h4>
 
 <h5>Tip: Assign ABET Criteria by editing Courses!</h5>

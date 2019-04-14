@@ -1,8 +1,7 @@
-<p id="notice"><%= notice %></p>
 
 <h1>Courses</h1>
 <% if @courses.count > 0 %>
-<table frame='box'>
+<table class="table">
   <thead>
     <tr>
       <th>Course Number</th>
@@ -26,14 +25,15 @@
 <% else %>
   <h4>No Courses Exist</h4>
 <% end %>
-<br>
 
 <%= link_to 'New Course', new_course_path %>
-
+<hr>
 <h2>Bulk Upload Courses</h2>
 <%= form_tag import_courses_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import Courses" %>
+  <p><%= file_field_tag :file %></p>
+  <p><%= submit_tag "Import Courses" %></p>
 <% end %>
-<h3><a href="courses_template.csv" download>Download Template</a></h3>
-<h3><a href="course_test_data.csv" download>Download Example Data</a></h3>
+<hr>
+<h4><a href="courses_template.csv" download>Download Template</a></h4>
+<h4><a href="course_test_data.csv" download>Download Example Data</a></h4>
+
