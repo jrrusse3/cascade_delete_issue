@@ -28,8 +28,10 @@
         <td><%= user.role %></td>
           <% end %>
         <td><%= link_to 'Show', user %></td>
+        <% if current_account.admin? %>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -38,13 +40,19 @@
   <h4>No Faculty Exist</h4>
 <% end %>
 
-<%= link_to 'New Faculty', new_user_path %>
+<% if current_account.admin? %>
+<h4><%= link_to 'New Faculty', new_user_path %></h4>
+  <% end %>
 <hr>
 <h2>Bulk Upload Faculty</h2>
+<% if current_account.admin? %>
 <%= form_tag import_users_path, multipart: true do %>
   <p><%= file_field_tag :file %></p>
   <p><%= submit_tag "Import Faculty" %></p>
 <% end %>
+  <% else %>
+  <p> Only Admins can bulk upload!</p>
+  <% end %>
 <hr>
 <h4><a href="faculty_template.csv" download>Download Template</a></h4>
 <h4><a href="faculty_test_data.csv" download>Download Example Data</a></h4>

@@ -78,6 +78,6 @@ class AbetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def abet_params
-      params.require(:abet).permit(:description, :poor, :acceptable, :exceeds)
+      params.require(:abet).permit(:name, :description, :poor, :acceptable, :exceeds)
     end
 end

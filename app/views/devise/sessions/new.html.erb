@@ -1,9 +1,14 @@
+
+<h4>Test Build Credentials:</h4>
+<h5>Admin / Password</h5>
+<h5>User / Password</h5>
+
 <h2>Log in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email, "User" %><br />
+    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">

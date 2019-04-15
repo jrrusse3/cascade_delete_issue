@@ -1,6 +1,6 @@
 class Abet < ApplicationRecord
   require 'csv'
-  validates_uniqueness_of :description
+  validates_uniqueness_of :name
 
   has_many :abets_courses
   has_many :courses, through: :abets_courses

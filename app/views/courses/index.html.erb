@@ -16,23 +16,30 @@
         <td><%= course.course_number %></td>
         <td><%= course.description %></td>
         <td><%= link_to 'Show', course %></td>
+        <% if current_account.admin? %>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+         <% end %>
+          </tr>
     <% end %>
   </tbody>
 </table>
 <% else %>
   <h4>No Courses Exist</h4>
 <% end %>
-
-<%= link_to 'New Course', new_course_path %>
+<% if current_account.admin? %>
+<h4><%= link_to 'New Course', new_course_path %></h4>
+  <% end %>
 <hr>
 <h2>Bulk Upload Courses</h2>
+<% if current_account.admin? %>
 <%= form_tag import_courses_path, multipart: true do %>
   <p><%= file_field_tag :file %></p>
   <p><%= submit_tag "Import Courses" %></p>
 <% end %>
+  <% else %>
+  <p>Only Admins can bulk upload!</p>
+  <% end %>
 <hr>
 <h4><a href="courses_template.csv" download>Download Template</a></h4>
 <h4><a href="course_test_data.csv" download>Download Example Data</a></h4>

@@ -1,8 +1,8 @@
-description,poor,acceptable,exceeds
-Programming Exposure,25,75,90
-Coverage of Fundamentals,25,75,90
-Proficiency in Higher-Level Language,10,50,80
-Advanced Course Work,60,80,90
-Team Building Exercises,10,50,80
-Comprehensive Syllabus,25,75,90
-Student Evaluation Scores,30,50,75
+name,description,poor,acceptable,exceeds
+Programming Exposure,Students show a good understanding of different programming concepts.,25,75,90
+Coverage of Fundamentals,Students show a good understanding of programming fundamentals.,25,75,90
+Language Proficiency,Students show a strong proficiency with at least one language.,10,50,80
+Advanced Course Work,Students are exposed to advanced projects.,60,80,90
+Strong Teamwork,Students display strong teamwork skills.,10,50,80
+Course Understanding,Students understood the course material.,25,75,90
+Student Evaluation Scores,Students scored well on standardized evaluations.,30,50,75
