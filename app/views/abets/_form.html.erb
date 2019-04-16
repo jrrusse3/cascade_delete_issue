@@ -12,30 +12,30 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name %><br>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :poor %>
+    <%= form.label :poor %><br>
     <%= form.number_field :poor, {min: 0, max: 100} %> Percent
   </div>
 
   <div class="field">
-    <%= form.label :acceptable %>
+    <%= form.label :acceptable %><br>
     <%= form.number_field :acceptable, {min: 0, max: 100} %> Percent
   </div>
 
   <div class="field">
-    <%= form.label :exceeds, "Exceeds Expectations" %>
+    <%= form.label :exceeds, "Exceeds Expectations" %><br>
     <%= form.number_field :exceeds, {min: 0, max: 100} %> Percent
   </div>
-
+  <br>
   <div class="actions">
     <%= form.submit "Update ABET"%>
   </div>
