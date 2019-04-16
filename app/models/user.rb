@@ -5,6 +5,9 @@ class User < ApplicationRecord
   has_many :courses_users
   has_many :courses, through: :courses_users
 
+  has_many :abets_courses, :dependent => :delete_all
+  accepts_nested_attributes_for :abets_courses, allow_destroy: true
+
 
   def full_name
     "#{fname} #{lname}"

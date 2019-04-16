@@ -21,20 +21,6 @@
     <%= form.text_area :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :poor %><br>
-    <%= form.number_field :poor, {min: 0, max: 100} %> Percent
-  </div>
-
-  <div class="field">
-    <%= form.label :acceptable %><br>
-    <%= form.number_field :acceptable, {min: 0, max: 100} %> Percent
-  </div>
-
-  <div class="field">
-    <%= form.label :exceeds, "Exceeds Expectations" %><br>
-    <%= form.number_field :exceeds, {min: 0, max: 100} %> Percent
-  </div>
   <br>
   <div class="actions">
     <%= form.submit "Update ABET"%>

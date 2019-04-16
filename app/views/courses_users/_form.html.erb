@@ -1,0 +1,43 @@
+<%= form_with(model: courses_user, local: true) do |form| %>
+  <% if courses_user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(courses_user.errors.count, "error") %> prohibited this courses_user from being saved:</h2>
+
+      <ul>
+      <% courses_user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <strong>Course:</strong>
+    <%= @courses_user.course.course_number %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= @courses_user.user.full_name %>
+  </p>
+  <h2>ABET Criteria</h2>
+  <% if Abet.all.count > 0 %>
+    <%= form.collection_check_boxes(:abet_ids, Abet.all, :id, :name) do |box| %>
+      <div class="row">
+        <%= box.label(class: "check_box") do %>
+          <div>
+            &nbsp; <%= box.check_box(class: "check_box") %>
+            &nbsp; <%= box.object.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <h4>No ABET Criteria Exists</h4>
+  <% end %>
+  <br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

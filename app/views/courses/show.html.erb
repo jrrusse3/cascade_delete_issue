@@ -1,4 +1,6 @@
 
+<h3>Course</h3>
+
 <p>
   <strong>Course Number:</strong>
   <%= @course.course_number %>
@@ -8,74 +10,35 @@
   <strong>Description:</strong>
   <%= @course.description %>
 </p>
-<h3>Faculty</h3>
+<h3>Assigned Faculty</h3>
 <% if @course.users.count > 0 %>
-<table class="table">
-  <thead>
-  <tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Title</th>
-    <th>Email</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @course.users.each do |user| %>
+  <table class="table">
+    <thead>
     <tr>
-      <td><%= user.fname %></td>
-      <td><%= user.lname %></td>
-      <td><%= user.title %></td>
-      <td><%= user.email %></td>
-      <td><%= link_to 'Show', user %></td>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Email</th>
+      <th colspan="1"></th>
     </tr>
-  <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+    <% @course.courses_users.order(:id).each do |assignment| %>
+      <tr>
+        <td><%= assignment.user.full_name %></td>
+        <td><%= assignment.user.title %></td>
+        <td><%= assignment.user.email %></td>
+        <td><%= link_to 'Show', assignment.user %></td>
+        <% if current_account.admin? %>
+          <td><%= link_to 'Assign ABET Criteria', edit_courses_user_path(assignment) %></td>
+      <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
 <% else %>
 <h4>No Assigned Faculty</h4>
-<% end %>
-
-<h3>ABET Criteria</h3>
-
-<% if @course.abets.count > 0 %>
-
-<table class="table">
-<thead>
-<tr>
-  <th>ABET Name</th>
-  <th>Poor</th>
-  <th>Acceptable</th>
-  <th>Exceeds Expectations</th>
-  <th>Grade</th>
-  <th colspan="3"></th>
-</tr>
-</thead>
-
-<tbody>
-<% @course.abets.each do |abet| %>
-  <tr>
-    <td><%= abet.name %></td>
-    <td align="center"><%= abet.poor %>%</td>
-    <td align="center"><%= abet.acceptable %>%</td>
-    <td align="center"><%= abet.exceeds %>%</td>
-    <td>
-    <%= form_for @course, url: {action: "update" } do |f| %>
-      <%= f.fields_for :abets_courses do |ff| %>
-        <% if ff.object.abet_id == abet.id %>
-        <%= ff.number_field :grade, {min: 0, max: 100}%>%
-        <%= ff.submit "Update Grade" %>
-            <% end %>
-      <% end %>
-        </td>
-    <% end %>
-  </tr>
-<% end %>
-</tbody>
-</table>
-<% else %>
-  <h4>No Assigned ABET Criteria</h4>
 <% end %>
 
 
@@ -83,6 +46,6 @@
 
 <br>
 <% if current_account.admin? %>
-<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Edit', edit_course_path(@course) %>
   <% end %>
-<%= link_to 'Back', courses_path %>
+

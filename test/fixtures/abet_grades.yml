@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  courses_user: one
+  abet: one
+  poor: 1
+  acceptable: 1
+  exceeds: 1
+  grade: 1
+
+two:
+  courses_user: two
+  abet: two
+  poor: 1
+  acceptable: 1
+  exceeds: 1
+  grade: 1

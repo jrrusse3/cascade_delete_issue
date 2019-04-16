@@ -2,8 +2,8 @@ class Abet < ApplicationRecord
   require 'csv'
   validates_uniqueness_of :name
 
-  has_many :abets_courses
-  has_many :courses, through: :abets_courses
+  has_many :abet_grades
+  has_many :courses_users, through: :abet_grades
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|

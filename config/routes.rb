@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :abets do
     collection {post :import}
   end
+
+  resources :courses_users do
+
+  end
+
   resources :courses do
     collection {post :import }
   end

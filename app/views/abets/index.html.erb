@@ -6,9 +6,6 @@
     <tr>
       <th>Name</th>
       <th>Description</th>
-      <th>Poor</th>
-      <th>Acceptable</th>
-      <th>Exceeds Expectations</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +15,6 @@
       <tr>
         <td><%= abet.name %></td>
         <td><%= abet.description %></td>
-        <td align="center"><%= abet.poor %>%</td>
-        <td align="center"><%= abet.acceptable %>%</td>
-        <td align="center"><%= abet.exceeds %>%</td>
         <td><%= link_to 'Show', abet %></td>
         <% if current_account.admin? %>
         <td><%= link_to 'Edit', edit_abet_path(abet) %></td>
