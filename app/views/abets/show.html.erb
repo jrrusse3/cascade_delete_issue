@@ -9,20 +9,7 @@
   <%= @abet.description %>
 </p>
 
-<p>
-  <strong>Poor:</strong>
-  <%= @abet.poor %>
-</p>
-
-<p>
-  <strong>Acceptable:</strong>
-  <%= @abet.acceptable %>
-</p>
-
-<p>
-  <strong>Exceeds:</strong>
-  <%= @abet.exceeds %>
-</p>
+<hr>
 <% if current_account.admin? %>
 <%= link_to 'Edit', edit_abet_path(@abet) %> |
   <% end %>

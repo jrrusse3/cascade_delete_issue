@@ -2,7 +2,7 @@ class Course < ApplicationRecord
   require 'csv'
   validates_uniqueness_of :course_number
 
-  has_many :courses_users
+  has_many :courses_users, :dependent => :delete_all
   has_many :users, through: :courses_users
 
   has_many :abets_courses, :dependent => :delete_all

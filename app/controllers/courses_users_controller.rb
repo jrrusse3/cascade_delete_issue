@@ -69,7 +69,7 @@ class CoursesUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def courses_user_params
-      params.require(:courses_user).permit(:user_id, :course_id, :abet_ids => [], :grade => [], abet_grades_attributes: [:id, :courses_user_id, :abet_id, :poor, :acceptable, :exceeds, :grade])
+      params.require(:courses_user).permit(:user_id, :course_id, :abet_ids => [], :grade => [], abet_grades_attributes: [:id, :courses_user_id, :abet_id, :poor, :acceptable, :exceeds, :poor_grade, :grade, :exceeds_grade])
       #params.require(:courses_user).
     end
 end

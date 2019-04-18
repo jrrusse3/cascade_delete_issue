@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_174710) do
+ActiveRecord::Schema.define(version: 2019_04_18_003957) do
 
   create_table "abet_grades", force: :cascade do |t|
     t.integer "courses_user_id"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_04_16_174710) do
     t.integer "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "poor_grade"
+    t.integer "exceeds_grade"
     t.index ["abet_id"], name: "index_abet_grades_on_abet_id"
     t.index ["courses_user_id"], name: "index_abet_grades_on_courses_user_id"
   end

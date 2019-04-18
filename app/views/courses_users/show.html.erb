@@ -11,18 +11,21 @@
   <%= @courses_user.user.full_name %>
 </p>
 
+
 <h3>ABET Criteria</h3>
-
+<body data-turbolinks="false">
 <% if @courses_user.abets.count > 0 %>
-
+  <% if current_account.admin? %>
   <table class="table">
     <thead>
     <tr>
       <th>ABET Name</th>
-      <th>Poor</th>
-      <th>Acceptable</th>
-      <th>Exceeds Expectations</th>
-      <th>Grade</th>
+      <th class="text-center">Poor<br>Threshold</th>
+      <th class="text-center">Acceptable<br>Threshold</th>
+      <th class="text-center">Exceeds<br>Threshold</th>
+      <th class="text-center">Poor<br>Students</th>
+      <th class="text-center">Acceptable<br>Students</th>
+      <th class="text-center">Exceeds<br>Students</th>
       <th colspan="3"></th>
     </tr>
     </thead>
@@ -31,23 +34,63 @@
     <% @courses_user.abets.each do |abet| %>
       <tr>
         <td><%= abet.name %></td>
+
           <%= form_for @courses_user, url: {action: "update" } do |f| %>
             <%= f.fields_for :abet_grades do |ff| %>
               <% if ff.object.abet_id == abet.id %>
-              <td><%= ff.number_field :poor, {min: 0, max:100} %>%</td>
-              <td><%= ff.number_field :acceptable, {min: 0, max:100} %>%</td>
-              <td><%= ff.number_field :exceeds, {min: 0, max:100} %>%</td>
-              <td><%= ff.number_field :grade, {min: 0, max: 100}%>%</td>
+              <td class="text-center"><%= ff.number_field :poor, {min: 0, max:100} %>%</td>
+              <td class="text-center"><%= ff.number_field :acceptable, {min: 0, max:100} %>%</td>
+              <td class="text-center"><%= ff.number_field :exceeds, {min: 0, max:100} %>%</td>
+              <td class="text-center"><%= ff.number_field :poor_grade, {min: 0, max: 100}%></td>
+              <td class="text-center"><%= ff.number_field :grade, {min: 0, max: 100}%></td>
+              <td class="text-center"><%= ff.number_field :exceeds_grade, {min: 0, max: 100}%></td>
               <td><%= ff.submit "Update Grade" %></td>
               <% end %>
             <% end %>
           <% end %>
           </tr>
+
     <% end %>
     </tbody>
   </table>
+    <% else %>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ABET Name</th>
+        <th class="text-center">Poor</th>
+        <th class="text-center">Acceptable</th>
+        <th class="text-center">Exceeds Expectations</th>
+        <th class="text-center">Grade</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @courses_user.abet_grades.each do |abet| %>
+        <tr>
+          <td><%= abet.abet.name %></td>
+          <td  class="text-center"><%= abet.poor %>%</td>
+          <td  class="text-center"><%= abet.acceptable %>%</td>
+          <td  class="text-center"><%= abet.exceeds %>%</td>
+          <td  class="text-center">
+           <% if abet.grade != nil %>
+            <%= abet.grade %>%
+              <% else %>
+            <p>No Grade</p>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <% end %>
 <% else %>
   <h4>No Assigned ABET Criteria</h4>
 <% end %>
-
-<%= link_to 'Assign ABET Criteria', edit_courses_user_path(@courses_user) %>
+</body>
+<% if current_account.admin? %>
+<hr>
+<h4><%= link_to 'Assign ABET Criteria', edit_courses_user_path(@courses_user) %></h4>
+<% end %>
